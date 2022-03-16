@@ -1,4 +1,4 @@
-const Alumni = require('../models/alumniModel')
+const User = require('../models/userModel')
 const asyncHandler = require('express-async-handler')
 const jwt = require('jsonwebtoken')
 
@@ -14,7 +14,7 @@ const protectRoute = asyncHandler ( async (req,res,next) => {
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
 
             // Get user using token
-            req.user = decoded
+            req.user = await User.findById(decoded.id).select('-password')
 
             next()
         } catch (error) {
