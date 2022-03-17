@@ -50,13 +50,26 @@ const registerUser = asyncHandler ( async (req,res) => {
 // POST request
 // Will hit on Login in page
 //Route --> /users/login
-const loginUser = asyncHandler ( async (req,res) => {})
+const loginUser = asyncHandler ( async (req,res) => {
+    const {email, password} = req.body
+
+    // Check if user exists
+    const user = await User.findOne({email})
+    if(user && (await bcrypt.compare(password, user.password))) {
+        res.status(200).json(user)
+    } else {
+        res.status(400)
+        throw new Error('Invalid credentials')
+    }
+})
 
 
 // Get request
 // Will hit on dashboard page
 //Route --> /users/me
-const getme = asyncHandler ( async (req,res) => {})
+const getme = asyncHandler ( async (req,res) => {
+    res.status(200).json(req.user)
+})
 
 
 // POST request
