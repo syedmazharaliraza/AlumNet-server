@@ -1,0 +1,52 @@
+.account-btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.account-btns a {
+  border-radius: 4px;
+  width: 150px;
+  margin-top: 30px;
+}
+
+.home {
+  min-height: 80vh;
+  position: relative;
+}
+
+.home h1,
+.home a {
+  z-index: 1;
+}
+
+.home h1 {
+  font-size: 42px;
+  text-align: center;
+  -webkit-text-stroke-width: 2.5px;
+  line-height: 1.4;
+}
+
+@media screen and (max-width: 500px) {
+  .home h1 {
+    font-size: 32px;
+    text-align: center;
+    -webkit-text-stroke-width: 1.5px;
+  }
+}
+
+.home::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url("../../public/images/general/alumni-img.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: 0;
+  filter: grayscale(0.5);
+}
